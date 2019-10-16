@@ -37,9 +37,20 @@ class Camera {
      * Computes eye, center, and up, based on the camera's default mode.
      */
     private void setDefaultMode(GlobalState gs) {
+        Vector E = new Vector(0,0,0);
+        E=E.add(gs.cnt);
         
-        Vector C = new Vector(0,0,0);
-        C=C.add(gs.cnt);
+        float x = (float)Math.cos(gs.theta) * (float)Math.cos(gs.phi) * gs.vDist;
+        float y = (float)Math.sin(gs.theta) * (float)Math.cos(gs.phi) * gs.vDist;
+        float z = (float)Math.sin(gs.phi) * gs.vDist;
+        
+        E.x = E.x + x;
+        E.y = E.y + y;
+        E.z = E.z + z;
+        
+        eye = E;
+        center = gs.cnt;
+        /*
         
         Vector E = new Vector(0,0,0);
         E.z=gs.vDist*Math.cos(gs.phi);
@@ -61,7 +72,8 @@ class Camera {
         
         eye = E;
         center = C;
-        up = U;   
+        up = U;  
+        */
     }
 
     /**

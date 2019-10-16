@@ -213,7 +213,6 @@ public class RobotRace extends Base {
         // Draw the axis frame.
         if (gs.showAxes) {
             drawAxisFrame();
-
         }
         
         // Draw the (first) robot.
