@@ -239,65 +239,28 @@ public class RobotRace extends Base {
      * and origin (yellow).
      */
     public void drawAxisFrame() {
-        
-        gl.glColor3d(255, 255, 0);
-        glut.glutSolidSphere(0.1,10,10);
-        
-        for(int i = 1;i<=3;i++){
-            drawArrow(i);
+	gl.glPushMatrix(); 
+            gl.glColor3f(0, 0, 255);                // blue
+            drawArrow();                            // z-axis
+            gl.glRotated(-90, 1, 0, 0);             // rotate around z-axis
+            gl.glColor3f(0, 255, 0);                // green
+            drawArrow();                            // y-axis
+            gl.glRotated(90, 0, 1, 0);              // rotate around y-axis
+            gl.glColor3f(255, 0, 0);                // red
+            drawArrow();                            // x-axis 
+            gl.glColor3f(255, 255, 0);              // yellow
+            glut.glutSolidSphere(0.1, 100, 100);    // solid sphere in center
+        gl.glPopMatrix();  
         }
-        
-    }
     
     /**
      * Draws a single arrow
      */
-    public void drawArrow(int i) {  
-        
-        gl.glPushMatrix();
-        // int i defines which arrow is drawn. i=1 gives x-arrow, i=2 gives y-arrow, i=3 gives z-arrow
-        if(i==1){
-           gl.glColor3d(255, 0, 0);     // X-axis = Red
-           gl.glScaled(0.5,0.05,0.05);
-           gl.glTranslated(0.5,0,0);
-           glut.glutSolidCube(1);
-           gl.glScaled(2,20,20);
-           
-           gl.glTranslated(0.25,0,0);
-           gl.glRotated(90,0,1,0);
-           glut.glutSolidCone(0.1,0.5,10,10);
-        } else if (i==2){
-           gl.glColor3d(0, 255, 0);         // Y-axis = Green
-           gl.glScaled(0.05,0.5,0.05);
-           gl.glTranslated(0,0.5,0);
-           glut.glutSolidCube(1);
-           gl.glScaled(20,2,20);  
-           
-           gl.glTranslated(0,0.25,0);
-           gl.glRotated(-90,1,0,0);
-           glut.glutSolidCone(0.1,0.5,10,10);
-        } else if (i==3){
-            gl.glColor3d(0, 0, 255);        // Z-axis = Blue
-            gl.glScaled(0.05,0.05,0.5);
-            gl.glTranslated(0,0,0.5);
-            glut.glutSolidCube(1);
-            gl.glScaled(20,20,2);
-            
-           gl.glTranslated(0,0,0.25);
-           glut.glutSolidCone(0.1,0.5,10,10);
-        }
-            
-         
-            
-            
-            
-            /*gl.glScaled(0.5,10,10);
-            gl.glTranslated(-0.8,0,0);
-            gl.glRotated(-90,x,y,z);
-            
-            
-            glut.glutSolidCone(0.2, 0.5, 50, 100);*/
-        gl.glPopMatrix();
+    public void drawArrow() {  
+        glut.glutSolidCylinder(0.01, 0.8, 100, 100);// Draws a solid cylinder
+        gl.glTranslated(0, 0, 0.8);
+        glut.glutSolidCone(0.03, 0.2, 100, 100);    // Draws a solid cone
+        gl.glTranslated(0,0,-0.8);
         
     }
  
