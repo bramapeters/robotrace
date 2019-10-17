@@ -13,10 +13,10 @@ import static com.jogamp.opengl.fixedfunc.GLLightingFunc.*;
 class Robot {
     
     /** The position of the robot. */
-    public Vector position = new Vector(0, 0, 2.5);
+    public Vector position = new Vector(1, 1, 2.5);
     
     /** The direction in which the robot is running. */
-    public Vector direction = new Vector(1, 1, 0);
+    public Vector direction = new Vector(1, 0, 0);
     
     /** Angle of limbs required to make a "running" movement. */
     public int Angle_Limbs = 45;  
@@ -59,62 +59,84 @@ class Robot {
             glut.glutSolidCube(1);
             gl.glScaled(1,1,0.667);
 
-             
-            // Left Arm
-            gl.glTranslated(0,-0.75,0.75);
-            gl.glRotated(-Angle_Limbs,0,1,0);
+            drawleftarm(gl,glu,glut,tAnim);
             
-            gl.glTranslated(0,0,-0.75);       
-            gl.glScaled(0.5,0.5,1.5);
-            glut.glutSolidCube(1);
-            gl.glScaled(2,2,0.667);
-            gl.glTranslated(0,0,0.75);
-            gl.glRotated(Angle_Limbs,0,1,0);
-        
-            // Right Arm
-            gl.glTranslated(0,1.5,0);
-            gl.glRotated(Angle_Limbs, 0, 1, 0);
-            
-            gl.glTranslated(0,0,-0.75);
-            gl.glScaled(0.5,0.5,1.5);
-            glut.glutSolidCube(1);  
-            gl.glScaled(2,2,0.667);
-            gl.glTranslated(0,0,0.75);
-            gl.glRotated(-Angle_Limbs,0,1,0);
-            
-            // Right Foot
-            gl.glTranslated(0,-0.5,-1.5);
-            gl.glRotated(-Angle_Limbs,0,1,0);
-            gl.glTranslated(0,0,-0.75);
-            gl.glScaled(0.5,0.5,1.5);
-            glut.glutSolidCube(1);
-            gl.glScaled(2,2,0.667);
-            gl.glTranslated(0,0,0.75);
-            gl.glRotated(Angle_Limbs,0,1,0);
-        
-            // Left Foot
-            gl.glTranslated(0,-0.5,0);
-            gl.glRotated(Angle_Limbs,0,1,0);
-            gl.glTranslated(0,0,-0.75);
-            gl.glScaled(0.5,0.5,1.5);
-            glut.glutSolidCube(1);
-            gl.glScaled(2,2,0.667);
-            gl.glTranslated(0,0,0.75);
-            gl.glRotated(-Angle_Limbs,0,1,0);
-            
-            // Neck 
-            // NOTE: The neck is designed as a rectangular rod which is clipped into the head and torso, not a disc.
-            gl.glTranslated(0,0.25,1.5);
-            gl.glScaled(0.5,0.5,0.5);
-            glut.glutSolidCube(1);
-            gl.glScaled(2,2,2);
-            
-            //Head
-            gl.glTranslated(0,0,0.75);
-            glut.glutSolidCube(1);
+         
         gl.glPopMatrix();        
     }
     
+    public void drawleftarm(GL2 gl, GLU glu, GLUT glut, float tAnim) {
+                     
+        // Left Arm
+        gl.glTranslated(0,-0.75,0.75);
+        gl.glRotated(-Angle_Limbs,0,1,0);
+
+        gl.glTranslated(0,0,-0.75);       
+        gl.glScaled(0.5,0.5,1.5);
+        glut.glutSolidCube(1);
+        gl.glScaled(2,2,0.667);
+        gl.glTranslated(0,0,0.75);
+        gl.glRotated(Angle_Limbs,0,1,0);
+        
+        drawrightarm(gl,glu,glut,tAnim);
+    }
+    
+    public void drawrightarm(GL2 gl, GLU glu, GLUT glut, float tAnim) {
+        // Right Arm
+        gl.glTranslated(0,1.5,0);
+        gl.glRotated(Angle_Limbs, 0, 1, 0);
+
+        gl.glTranslated(0,0,-0.75);
+        gl.glScaled(0.5,0.5,1.5);
+        glut.glutSolidCube(1);  
+        gl.glScaled(2,2,0.667);
+        gl.glTranslated(0,0,0.75);
+        gl.glRotated(-Angle_Limbs,0,1,0);
+        drawrightfoot(gl,glu,glut,tAnim);
+    }
+    
+    public void drawrightfoot(GL2 gl, GLU glu, GLUT glut, float tAnim) {
+        // Right Foot
+        gl.glTranslated(0,-0.5,-1.5);
+        gl.glRotated(-Angle_Limbs,0,1,0);
+        gl.glTranslated(0,0,-0.75);
+        gl.glScaled(0.5,0.5,1.5);
+        glut.glutSolidCube(1);
+        gl.glScaled(2,2,0.667);
+        gl.glTranslated(0,0,0.75);
+        gl.glRotated(Angle_Limbs,0,1,0);
+          
+        drawleftfoot(gl,glu,glut,tAnim);
+    }
+    public void drawleftfoot(GL2 gl, GLU glu, GLUT glut, float tAnim) {
+        // Left Foot
+        gl.glTranslated(0,-0.5,0);
+        gl.glRotated(Angle_Limbs,0,1,0);
+        gl.glTranslated(0,0,-0.75);
+        gl.glScaled(0.5,0.5,1.5);
+        glut.glutSolidCube(1);
+        gl.glScaled(2,2,0.667);
+        gl.glTranslated(0,0,0.75);
+        gl.glRotated(-Angle_Limbs,0,1,0);
+        
+        drawneck(gl,glu,glut,tAnim);
+    }
+    
+    public void drawneck(GL2 gl, GLU glu, GLUT glut, float tAnim) {
+        // Neck 
+        // NOTE: The neck is designed as a rectangular rod which is clipped into the head and torso, not a disc.
+        gl.glTranslated(0,0.25,1.5);
+        gl.glScaled(0.5,0.5,0.5);
+        glut.glutSolidCube(1);
+        gl.glScaled(2,2,2);
+        
+        drawhead(gl,glu,glut,tAnim);
+    }
+
+    public void drawhead(GL2 gl, GLU glu, GLUT glut, float tAnim) {
+
+        //Head
+        gl.glTranslated(0,0,0.75);
+        glut.glutSolidCube(1);
+    }
 }
-
-
