@@ -48,22 +48,32 @@ class Robot {
     public void draw(GL2 gl, GLU glu, GLUT glut, float tAnim) {
         //System.out.println("Angle="+Angle_Direction);
 
-        gl.glPushMatrix();      
+        gl.glPushMatrix();
+            gl.glTranslated(position.x,position.y,position.z);
+            drawTorso(gl, glu, glut, tAnim, Angle_Direction);
+            gl.glTranslated(0,-0.75,0.75);
+            drawArms(gl, glu, glut, tAnim, Angle_Limbs);
+            gl.glTranslated(0,-0.5,-1.5);
+            drawLegs(gl, glu, glut, tAnim, Angle_Limbs);
+            gl.glTranslated(0,0.25,1.5);
+            drawNeck(gl, glu, glut, tAnim);
+            gl.glTranslated(0,0,0.75);
+            glut.glutSolidCube(1);
+        gl.glPopMatrix();        
+    }
     
-            // Draw Torso
+    public void drawTorso(GL2 gl, GLU glu, GLUT glut, float tAnim, double Angle_Direction){
             // Vector position is defined in the Robot class
             // This position vector is defined as the vector to the center of the torso of the robot
-            gl.glTranslated(position.x,position.y,position.z);
             gl.glRotated(-Angle_Direction,0,0,1);
             gl.glScaled(1,1,1.5);
             glut.glutSolidCube(1);
             gl.glScaled(1,1,0.667);
-
-             
+    }
+    
+    public void drawArms(GL2 gl, GLU glu, GLUT glut, float tAnim, double Angle_Limbs){
             // Left Arm
-            gl.glTranslated(0,-0.75,0.75);
             gl.glRotated(-Angle_Limbs,0,1,0);
-            
             gl.glTranslated(0,0,-0.75);       
             gl.glScaled(0.5,0.5,1.5);
             glut.glutSolidCube(1);
@@ -74,16 +84,16 @@ class Robot {
             // Right Arm
             gl.glTranslated(0,1.5,0);
             gl.glRotated(Angle_Limbs, 0, 1, 0);
-            
             gl.glTranslated(0,0,-0.75);
             gl.glScaled(0.5,0.5,1.5);
             glut.glutSolidCube(1);  
             gl.glScaled(2,2,0.667);
             gl.glTranslated(0,0,0.75);
             gl.glRotated(-Angle_Limbs,0,1,0);
-            
+    }
+    
+    public void drawLegs(GL2 gl, GLU glu, GLUT glut, float tAnim, double Angle_Limbs){
             // Right Foot
-            gl.glTranslated(0,-0.5,-1.5);
             gl.glRotated(-Angle_Limbs,0,1,0);
             gl.glTranslated(0,0,-0.75);
             gl.glScaled(0.5,0.5,1.5);
@@ -101,18 +111,13 @@ class Robot {
             gl.glScaled(2,2,0.667);
             gl.glTranslated(0,0,0.75);
             gl.glRotated(-Angle_Limbs,0,1,0);
-            
-            // Neck 
+    }
+    
+    public void drawNeck(GL2 gl, GLU glu, GLUT glut, float tAnim){
             // NOTE: The neck is designed as a rectangular rod which is clipped into the head and torso, not a disc.
-            gl.glTranslated(0,0.25,1.5);
             gl.glScaled(0.5,0.5,0.5);
             glut.glutSolidCube(1);
             gl.glScaled(2,2,2);
-            
-            //Head
-            gl.glTranslated(0,0,0.75);
-            glut.glutSolidCube(1);
-        gl.glPopMatrix();        
     }
     
 }
