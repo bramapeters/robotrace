@@ -13,10 +13,10 @@ import static com.jogamp.opengl.fixedfunc.GLLightingFunc.*;
 class Robot {
     
     /** The position of the robot. */
-    public Vector position = new Vector(1, 1, 2.5);
+    public Vector position = new Vector(0, 0, 2.5);
     
     /** The direction in which the robot is running. */
-    public Vector direction = new Vector(1, 0, 0);
+    public Vector direction = new Vector(1, 1, 0);
     
     /** Angle of limbs required to make a "running" movement. */
     public int Angle_Limbs = 45;  
