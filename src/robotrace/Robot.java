@@ -13,7 +13,7 @@ import static com.jogamp.opengl.fixedfunc.GLLightingFunc.*;
 class Robot {
     
     /** The position of the robot. */
-    public Vector position = new Vector(1, 1, 0.8);
+    public Vector position = new Vector(0, 0, 2.5);
     
     /** The direction in which the robot is running. */
     public Vector direction = new Vector(1, 1, 0);
@@ -29,6 +29,7 @@ class Robot {
     /** The material from which this robot is built. */
     private final Material material;
     
+    
 
     /**
      * Constructs the robot with initial parameters.
@@ -37,6 +38,7 @@ class Robot {
             
     ) {
         this.material = material;
+
         
     }
 
@@ -47,28 +49,35 @@ class Robot {
         //System.out.println("Angle="+Angle_Direction);
 
         gl.glPushMatrix();      
+    
             // Draw Torso
             // Vector position is defined in the Robot class
             // This position vector is defined as the vector to the center of the torso of the robot
             gl.glTranslated(position.x,position.y,position.z);
             gl.glRotated(-Angle_Direction,0,0,1);
-            gl.glScaled(0.4,0.4,0.6);
+            gl.glScaled(1,1,1.5);
             glut.glutSolidCube(1);
             gl.glScaled(1,1,0.667);
+
             drawleftarm(gl,glu,glut,tAnim);
+            
+         
         gl.glPopMatrix();        
     }
     
     public void drawleftarm(GL2 gl, GLU glu, GLUT glut, float tAnim) {
+                     
         // Left Arm
         gl.glTranslated(0,-0.75,0.75);
         gl.glRotated(-Angle_Limbs,0,1,0);
+
         gl.glTranslated(0,0,-0.75);       
         gl.glScaled(0.5,0.5,1.5);
         glut.glutSolidCube(1);
         gl.glScaled(2,2,0.667);
         gl.glTranslated(0,0,0.75);
         gl.glRotated(Angle_Limbs,0,1,0);
+        
         drawrightarm(gl,glu,glut,tAnim);
     }
     
@@ -76,6 +85,7 @@ class Robot {
         // Right Arm
         gl.glTranslated(0,1.5,0);
         gl.glRotated(Angle_Limbs, 0, 1, 0);
+
         gl.glTranslated(0,0,-0.75);
         gl.glScaled(0.5,0.5,1.5);
         glut.glutSolidCube(1);  
@@ -95,6 +105,7 @@ class Robot {
         gl.glScaled(2,2,0.667);
         gl.glTranslated(0,0,0.75);
         gl.glRotated(Angle_Limbs,0,1,0);
+          
         drawleftfoot(gl,glu,glut,tAnim);
     }
     public void drawleftfoot(GL2 gl, GLU glu, GLUT glut, float tAnim) {
@@ -107,6 +118,7 @@ class Robot {
         gl.glScaled(2,2,0.667);
         gl.glTranslated(0,0,0.75);
         gl.glRotated(-Angle_Limbs,0,1,0);
+        
         drawneck(gl,glu,glut,tAnim);
     }
     
@@ -117,10 +129,12 @@ class Robot {
         gl.glScaled(0.5,0.5,0.5);
         glut.glutSolidCube(1);
         gl.glScaled(2,2,2);
+        
         drawhead(gl,glu,glut,tAnim);
     }
 
     public void drawhead(GL2 gl, GLU glu, GLUT glut, float tAnim) {
+
         //Head
         gl.glTranslated(0,0,0.75);
         glut.glutSolidCube(1);
