@@ -215,12 +215,22 @@ public class RobotRace extends Base {
             drawAxisFrame();
         }
         
-        // Draw the (first) robot.
+        // Draw the robots.
+        
         gl.glUseProgram(robotShader.getProgramID()); 
+        double angle_slider_a = gs.sliderA;
         
-        robots[0].draw(gl, glu, glut, 0);
-        
-        
+        gl.glPushMatrix();
+            robots[0].draw(gl, glu, glut, 0, angle_slider_a);
+            gl.glTranslated(2, 0, 0);
+            robots[1].draw(gl, glu, glut, 0, angle_slider_a);
+            gl.glTranslated(2, 0, 0);
+            robots[2].draw(gl, glu, glut, 0, angle_slider_a);
+            gl.glTranslated(2, 0, 0);
+            robots[3].draw(gl, glu, glut, 0, angle_slider_a);
+            gl.glTranslated(2, 0, 0);
+        gl.glPopMatrix();
+
         // Draw the race track.
         gl.glUseProgram(trackShader.getProgramID());
         raceTracks[gs.trackNr].draw(gl, glu, glut);
@@ -229,7 +239,6 @@ public class RobotRace extends Base {
         gl.glUseProgram(terrainShader.getProgramID());
         terrain.draw(gl, glu, glut);
         reportError("terrain:");
-        
         
     }
     

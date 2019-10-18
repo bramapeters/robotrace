@@ -11,9 +11,9 @@ public enum Material {
      */
     GOLD (
             
-        new float[] {0, 0, 0, 1},
-        new float[] {0, 0, 0, 1},
-        0
+        new float[] {0.75164f, 0.60648f, 0.22648f, 1f},
+        new float[] {0.628281f, 0.555802f,0.366065f, 1f},
+        51.2f
 
     ),
 
@@ -23,9 +23,9 @@ public enum Material {
      */
     SILVER (
             
-        new float[] {0, 0, 0, 1},
-        new float[] {0, 0, 0, 1},
-        0
+        new float[] {0.50754f, 0.50754f, 0.50754f, 1f},
+        new float[] {0.508273f, 0.508273f, 0.508273f, 1f},
+        51.2f
 
     ),
 
@@ -35,9 +35,9 @@ public enum Material {
      */
     ORANGE (
             
-        new float[] {0, 0, 0, 1},
-        new float[] {0, 0, 0, 1},
-        0
+        new float[] {0.992157f, 0.513726f, 0.0f, 1f},
+        new float[] {0.0225f, 0.0225f, 0.0225f, 1f},
+        12.8f
 
     ),
 
@@ -47,12 +47,12 @@ public enum Material {
      */
     WOOD (
 
-        new float[] {0, 0, 0, 1},
-        new float[] {0, 0, 0, 1},
-        0
+        new float[] {0.6f, 0.4f, 0f, 1f},
+        new float[] {1f, 1f, 1f, 1f},
+        20.0f
 
     );
-
+    
     /** The diffuse RGBA reflectance of the material. */
     float[] diffuse;
 
