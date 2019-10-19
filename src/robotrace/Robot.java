@@ -13,7 +13,8 @@ import static com.jogamp.opengl.fixedfunc.GLLightingFunc.*;
 class Robot {
     
     /** The position of the robot. */
-    public Vector position = new Vector(1, 1, 1);
+    
+    public Vector position = new Vector(0,0,0);
     
     /** The direction in which the robot is running. */
     public Vector direction = new Vector(1, 1, 0);
@@ -42,6 +43,8 @@ class Robot {
      * Draws this robot (as a {@code stickfigure} if specified).
      */
     public void draw(GL2 gl, GLU glu, GLUT glut, float tAnim, double angle_slider) {
+        
+
         gl.glMaterialfv(GL_FRONT, GL_DIFFUSE, material.diffuse, 0);
         gl.glMaterialfv(GL_FRONT, GL_SPECULAR, material.specular, 0);
         gl.glMaterialf(GL_FRONT, GL_SHININESS, material.shininess);

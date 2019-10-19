@@ -6,17 +6,22 @@ package robotrace;
  */
 public class ParametricTrack extends RaceTrack {
     
-    @Override
     protected Vector getPoint(double t) {
-
-        return Vector.O;
+        Vector P= new Vector(10*Math.cos(2*Math.PI*t),14*Math.sin(2*Math.PI*t),1);
+        return P;
 
     }
 
-    @Override
     protected Vector getTangent(double t) {
+        Vector Tangent = new Vector(-20*Math.PI*Math.sin(2*Math.PI*t),28*Math.PI*Math.cos(2*Math.PI*t),0);
+        double TangentMagnitude = Math.sqrt(Math.pow(Tangent.x,2)+Math.pow(Tangent.y,2));
+        
+        double TangentNormx = Tangent.x/TangentMagnitude;
+        double TangentNormy = Tangent.y/TangentMagnitude;
+        
+        Vector TangentNorm = new Vector(TangentNormx,TangentNormy,0);
 
-        return Vector.O;
+        return TangentNorm;
 
     }
     

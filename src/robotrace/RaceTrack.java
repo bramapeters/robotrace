@@ -19,14 +19,93 @@ abstract class RaceTrack {
      * Constructor for the default track.
      */
     public RaceTrack() {
+        
     }
-
 
     
     /**
      * Draws this track, based on the control points.
      */
     public void draw(GL2 gl, GLU glu, GLUT glut) {
+        int N=40, Ntracks=4, Ncorners=2;    // N defines the number of Vertices each oval-shaped line are created.
+                                            // Ntracks defines the number of tracks. This can stay at Ntracks = 4.
+                                            // Ncorners is used to draw the corners of the track at z=-1. This can stay at Ncorners = 2.
+        int tmin=0;        
+        double dt = Math.pow(N, -1);
+
+        /** Draw Ntracks+1 lines that separate each track. */
+        for (int k=0; k<=Ntracks;k++){
+            gl.glBegin(GL_LINE_LOOP);
+            gl.glColor3f(0, 0, 0);   
+            
+            /** Draw a line between each track using N vertices. */
+            for (int i=0; i<=N; i++){
+                Vector P = getPoint(tmin+i*dt);
+                Vector Normal = new Vector(0,0,1);
+                Vector Tangent = getTangent(tmin+i*dt);
+                Vector Bitangent = Normal.cross(Tangent);
+                gl.glVertex3d(P.x+(k-2)*laneWidth*Bitangent.x,P.y+(k-2)*laneWidth*Bitangent.y,P.z+(k-2)*laneWidth*Bitangent.z);     
+
+            }
+            gl.glEnd();
+            gl.glFlush();
+        }
+        
+        /** Draw surface of the track at z=1*/
+        gl.glBegin(GL_TRIANGLE_STRIP);
+        gl.glColor3f(255, 0, 0);   
+        for (int i=0; i<=N; i++){
+            Vector P = getPoint(tmin+i*dt);
+            Vector Normal = new Vector(0,0,1);
+            Vector Tangent = getTangent(tmin+i*dt);
+            Vector Bitangent = Normal.cross(Tangent);
+            gl.glVertex3d(P.x+2*laneWidth*Bitangent.x,P.y+2*laneWidth*Bitangent.y,1);                
+            gl.glVertex3d(P.x-2*laneWidth*Bitangent.x,P.y-2*laneWidth*Bitangent.y,1);                
+        }
+        gl.glEnd();
+        gl.glFlush();
+        
+        
+        /** Draw the surface of track at z=-1. */
+        gl.glBegin(GL_TRIANGLE_STRIP);
+        for (int i=0; i<=N; i++){
+
+            Vector P = getPoint(tmin+i*dt);
+            Vector Normal = new Vector(0,0,1);
+            Vector Tangent = getTangent(tmin+i*dt);
+            Vector Bitangent = Normal.cross(Tangent);
+            gl.glVertex3d(P.x+2*laneWidth*Bitangent.x,P.y+2*laneWidth*Bitangent.y,-1);                
+            gl.glVertex3d(P.x-2*laneWidth*Bitangent.x,P.y-2*laneWidth*Bitangent.y,-1);  
+
+        }
+        gl.glEnd();
+        gl.glFlush();
+           
+        /** Draw the surface of the inner side of track. */
+        gl.glBegin(GL_TRIANGLE_STRIP);
+        for (int i=0; i<=N; i++){
+            Vector P = getPoint(tmin+i*dt);
+            Vector Normal = new Vector(0,0,1);
+            Vector Tangent = getTangent(tmin+i*dt);
+            Vector Bitangent = Normal.cross(Tangent);
+            gl.glVertex3d(P.x+2*laneWidth*Bitangent.x,P.y+2*laneWidth*Bitangent.y,1);                
+            gl.glVertex3d(P.x+2*laneWidth*Bitangent.x,P.y+2*laneWidth*Bitangent.y,-1); 
+        }
+        gl.glEnd();
+        gl.glFlush();
+        
+        /** Draw the surface of the outer side of the track. */
+        gl.glBegin(GL_TRIANGLE_STRIP);
+        for (int i=0; i<=N; i++){
+            Vector P = getPoint(tmin+i*dt);
+            Vector Normal = new Vector(0,0,1);
+            Vector Tangent = getTangent(tmin+i*dt);
+            Vector Bitangent = Normal.cross(Tangent);
+            gl.glVertex3d(P.x-2*laneWidth*Bitangent.x,P.y-2*laneWidth*Bitangent.y,1);                
+            gl.glVertex3d(P.x-2*laneWidth*Bitangent.x,P.y-2*laneWidth*Bitangent.y,-1);  
+        }
+        gl.glEnd();
+        gl.glFlush();
         
     }
     
@@ -35,8 +114,15 @@ abstract class RaceTrack {
      * Use this method to find the position of a robot on the track.
      */
     public Vector getLanePoint(int lane, double t){
+        Vector Pcenter = getPoint(t);
+        Vector Normal = new Vector(0,0,1);
+        Vector Tangent = getTangent(t);
+        Vector Bitangent = Normal.cross(Tangent);
+        
 
-        return Vector.O;
+        Vector P = new Vector(Pcenter.x+(lane-2.5)*laneWidth*Bitangent.x,Pcenter.y+(lane-2.5)*laneWidth*Bitangent.y,1);                
+        System.out.println("P="+P);
+        return P;
 
     }
     
@@ -45,8 +131,11 @@ abstract class RaceTrack {
      * Use this method to find the orientation of a robot on the track.
      */
     public Vector getLaneTangent(int lane, double t){
-        
-        return Vector.O;
+
+        Vector Tangent = getTangent(t);
+        System.out.println("Tangent="+t);   //lane needs to be included in the function probably.
+    
+        return Tangent;
 
     }
     
