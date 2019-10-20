@@ -59,13 +59,8 @@ abstract class RaceTrack {
             Vector Normal = new Vector(0,0,1);
             Vector Tangent = getTangent(tmin+i*dt);
             Vector Bitangent = Normal.cross(Tangent);
-<<<<<<< HEAD
             gl.glVertex3d(P.x+2*laneWidth*Bitangent.x,P.y+2*laneWidth*Bitangent.y,1);                
             gl.glVertex3d(P.x-2*laneWidth*Bitangent.x,P.y-2*laneWidth*Bitangent.y,1);                
-=======
-            gl.glVertex3d(P.x+3*laneWidth*Bitangent.x,P.y+3*laneWidth*Bitangent.y,1);                
-            gl.glVertex3d(P.x-3*laneWidth*Bitangent.x,P.y-3*laneWidth*Bitangent.y,1);                
->>>>>>> parent of 1766758... robots running on race track (though track is black)
         }
         gl.glEnd();
         gl.glFlush();
@@ -79,14 +74,9 @@ abstract class RaceTrack {
             Vector Normal = new Vector(0,0,1);
             Vector Tangent = getTangent(tmin+i*dt);
             Vector Bitangent = Normal.cross(Tangent);
-<<<<<<< HEAD
             gl.glVertex3d(P.x+2*laneWidth*Bitangent.x,P.y+2*laneWidth*Bitangent.y,-1);                
             gl.glVertex3d(P.x-2*laneWidth*Bitangent.x,P.y-2*laneWidth*Bitangent.y,-1);  
 
-=======
-            gl.glVertex3d(P.x+3*laneWidth*Bitangent.x,P.y+3*laneWidth*Bitangent.y,-1);                
-            gl.glVertex3d(P.x-3*laneWidth*Bitangent.x,P.y-3*laneWidth*Bitangent.y,-1);  
->>>>>>> parent of 1766758... robots running on race track (though track is black)
         }
         gl.glEnd();
         gl.glFlush();
@@ -98,13 +88,8 @@ abstract class RaceTrack {
             Vector Normal = new Vector(0,0,1);
             Vector Tangent = getTangent(tmin+i*dt);
             Vector Bitangent = Normal.cross(Tangent);
-<<<<<<< HEAD
             gl.glVertex3d(P.x+2*laneWidth*Bitangent.x,P.y+2*laneWidth*Bitangent.y,1);                
             gl.glVertex3d(P.x+2*laneWidth*Bitangent.x,P.y+2*laneWidth*Bitangent.y,-1); 
-=======
-            gl.glVertex3d(P.x+3*laneWidth*Bitangent.x,P.y+3*laneWidth*Bitangent.y,1);                
-            gl.glVertex3d(P.x+3*laneWidth*Bitangent.x,P.y+3*laneWidth*Bitangent.y,-1); 
->>>>>>> parent of 1766758... robots running on race track (though track is black)
         }
         gl.glEnd();
         gl.glFlush();
