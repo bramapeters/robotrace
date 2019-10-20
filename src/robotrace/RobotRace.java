@@ -1,6 +1,20 @@
 package robotrace;
 
+import static com.jogamp.opengl.GL.GL_BLEND;
+import static com.jogamp.opengl.GL.GL_COLOR_BUFFER_BIT;
+import static com.jogamp.opengl.GL.GL_DEPTH_BUFFER_BIT;
+import static com.jogamp.opengl.GL.GL_DEPTH_TEST;
+import static com.jogamp.opengl.GL.GL_FRONT_AND_BACK;
+import static com.jogamp.opengl.GL.GL_LESS;
+import static com.jogamp.opengl.GL.GL_ONE_MINUS_SRC_ALPHA;
+import static com.jogamp.opengl.GL.GL_SRC_ALPHA;
 import static com.jogamp.opengl.GL2.*;
+import static com.jogamp.opengl.GL2GL3.GL_FILL;
+import static com.jogamp.opengl.fixedfunc.GLLightingFunc.GL_LIGHT0;
+import static com.jogamp.opengl.fixedfunc.GLLightingFunc.GL_NORMALIZE;
+import static com.jogamp.opengl.fixedfunc.GLLightingFunc.GL_POSITION;
+import static com.jogamp.opengl.fixedfunc.GLMatrixFunc.GL_MODELVIEW;
+import static com.jogamp.opengl.fixedfunc.GLMatrixFunc.GL_PROJECTION;
 import static robotrace.ShaderPrograms.*;
 import static robotrace.Textures.*;
 

@@ -1,5 +1,7 @@
 package robotrace;
 
+import static com.jogamp.opengl.GL.GL_LINE_LOOP;
+import static com.jogamp.opengl.GL.GL_TRIANGLE_STRIP;
 import com.jogamp.opengl.util.gl2.GLUT;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.glu.GLU;
