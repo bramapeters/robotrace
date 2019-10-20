@@ -44,8 +44,7 @@ abstract class RaceTrack {
                 Vector Normal = new Vector(0,0,1);
                 Vector Tangent = getTangent(tmin+i*dt);
                 Vector Bitangent = Normal.cross(Tangent);
-                gl.glVertex3d(P.x+(k-2)*laneWidth*Bitangent.x,P.y+(k-2)*laneWidth*Bitangent.y,P.z+(k-2)*laneWidth*Bitangent.z);     
-
+                gl.glVertex3d(P.x+(k-3)*laneWidth*Bitangent.x,P.y+(k-3)*laneWidth*Bitangent.y,P.z+(k-3)*laneWidth*Bitangent.z);     
             }
             gl.glEnd();
             gl.glFlush();
@@ -59,8 +58,8 @@ abstract class RaceTrack {
             Vector Normal = new Vector(0,0,1);
             Vector Tangent = getTangent(tmin+i*dt);
             Vector Bitangent = Normal.cross(Tangent);
-            gl.glVertex3d(P.x+2*laneWidth*Bitangent.x,P.y+2*laneWidth*Bitangent.y,1);                
-            gl.glVertex3d(P.x-2*laneWidth*Bitangent.x,P.y-2*laneWidth*Bitangent.y,1);                
+            gl.glVertex3d(P.x+3*laneWidth*Bitangent.x,P.y+3*laneWidth*Bitangent.y,1);                
+            gl.glVertex3d(P.x-3*laneWidth*Bitangent.x,P.y-3*laneWidth*Bitangent.y,1);                
         }
         gl.glEnd();
         gl.glFlush();
@@ -69,14 +68,12 @@ abstract class RaceTrack {
         /** Draw the surface of track at z=-1. */
         gl.glBegin(GL_TRIANGLE_STRIP);
         for (int i=0; i<=N; i++){
-
             Vector P = getPoint(tmin+i*dt);
             Vector Normal = new Vector(0,0,1);
             Vector Tangent = getTangent(tmin+i*dt);
             Vector Bitangent = Normal.cross(Tangent);
-            gl.glVertex3d(P.x+2*laneWidth*Bitangent.x,P.y+2*laneWidth*Bitangent.y,-1);                
-            gl.glVertex3d(P.x-2*laneWidth*Bitangent.x,P.y-2*laneWidth*Bitangent.y,-1);  
-
+            gl.glVertex3d(P.x+3*laneWidth*Bitangent.x,P.y+3*laneWidth*Bitangent.y,-1);                
+            gl.glVertex3d(P.x-3*laneWidth*Bitangent.x,P.y-3*laneWidth*Bitangent.y,-1);  
         }
         gl.glEnd();
         gl.glFlush();
@@ -88,8 +85,8 @@ abstract class RaceTrack {
             Vector Normal = new Vector(0,0,1);
             Vector Tangent = getTangent(tmin+i*dt);
             Vector Bitangent = Normal.cross(Tangent);
-            gl.glVertex3d(P.x+2*laneWidth*Bitangent.x,P.y+2*laneWidth*Bitangent.y,1);                
-            gl.glVertex3d(P.x+2*laneWidth*Bitangent.x,P.y+2*laneWidth*Bitangent.y,-1); 
+            gl.glVertex3d(P.x+3*laneWidth*Bitangent.x,P.y+3*laneWidth*Bitangent.y,1);                
+            gl.glVertex3d(P.x+3*laneWidth*Bitangent.x,P.y+3*laneWidth*Bitangent.y,-1); 
         }
         gl.glEnd();
         gl.glFlush();
@@ -101,8 +98,8 @@ abstract class RaceTrack {
             Vector Normal = new Vector(0,0,1);
             Vector Tangent = getTangent(tmin+i*dt);
             Vector Bitangent = Normal.cross(Tangent);
-            gl.glVertex3d(P.x-2*laneWidth*Bitangent.x,P.y-2*laneWidth*Bitangent.y,1);                
-            gl.glVertex3d(P.x-2*laneWidth*Bitangent.x,P.y-2*laneWidth*Bitangent.y,-1);  
+            gl.glVertex3d(P.x-3*laneWidth*Bitangent.x,P.y-3*laneWidth*Bitangent.y,1);                
+            gl.glVertex3d(P.x-3*laneWidth*Bitangent.x,P.y-3*laneWidth*Bitangent.y,-1);  
         }
         gl.glEnd();
         gl.glFlush();

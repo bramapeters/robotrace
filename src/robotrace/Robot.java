@@ -21,6 +21,7 @@ class Robot {
     
     /** Angle of limbs required to make a "running" movement. */
     public int Angle_Limbs = 45; 
+    public double angle_race;
     
     /** Computation of the angle required to rotate the robot in the direction of the direction vector. */
     private double xdir = direction.x;
@@ -38,7 +39,10 @@ class Robot {
     ) {
         this.material = material;
     }
-
+    
+    public void setAngle(double angle_race) {
+        this.angle_race = angle_race;
+    }
     /**
      * Draws this robot (as a {@code stickfigure} if specified).
      */
@@ -52,8 +56,8 @@ class Robot {
         gl.glPushMatrix();      
             // Vector position is defined in the Robot class
             // This position vector is defined as the vector to the center of the torso of the robot
-            gl.glTranslated(position.x,position.y,position.z);
-            gl.glRotated(90 ,0,0,1);
+            gl.glTranslated(position.x,position.y,position.z+1);
+            gl.glRotated(angle_race ,0,0,1);
             gl.glScaled(0.4,0.4,0.75);
             glut.glutSolidCube(1);
             gl.glScaled(1,1,0.667);
