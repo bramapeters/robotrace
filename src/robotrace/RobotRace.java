@@ -231,13 +231,10 @@ public class RobotRace extends Base {
         
         // Draw the robots.
         gl.glUseProgram(robotShader.getProgramID());
-        
         double angle_slider_a = gs.sliderA;
-        
-        Double[] speed = {0.01, 0.03, 0.05, 0.07};
-        
+        Double[] speed = {0.02, 0.03, 0.05, 0.07};
         for(int i = 0; i < 4; i++) {
-            angle_slider_a =  0.5 - 0.8*Math.sin(gs.tAnim*speed[i]*90);
+            angle_slider_a =  0.5 - 12*speed[i]*Math.sin(gs.tAnim*10);
             robots[i].position = raceTracks[0].getLanePoint(i, speed[i] * (double)gs.tAnim);
             robots[i].direction = raceTracks[0].getLaneTangent(i, speed[i] * (double)gs.tAnim).normalized();
             robots[i].setAngle(180*Math.atan2(robots[i].direction.y, robots[i].direction.x)/Math.PI);
