@@ -34,7 +34,9 @@ abstract class RaceTrack {
                                             // Ncorners is used to draw the corners of the track at z=-1. This can stay at Ncorners = 2.
         int tmin=0;        
         double dt = Math.pow(N, -1);
-
+        
+        drawTrack(gl, glu, glut, tmin, dt, N, Ntracks, Ncorners);
+        drawBrick(gl, glu,glut, tmin, dt, N, Ntracks, Ncorners);
         /** Draw Ntracks+1 lines that separate each track. */
         for (int k=0; k<=Ntracks;k++){
             gl.glBegin(GL_LINE_LOOP);
@@ -51,7 +53,9 @@ abstract class RaceTrack {
             gl.glEnd();
             gl.glFlush();
         }
-        
+    }
+    
+    public void drawTrack(GL2 gl, GLU glu, GLUT glut, int tmin, double dt, int N, int Ntracks, int Ncorners){
         /** Draw surface of the track at z=1*/
         gl.glBegin(GL_TRIANGLE_STRIP);
         gl.glColor3f(255, 0, 0);   
@@ -66,7 +70,6 @@ abstract class RaceTrack {
         gl.glEnd();
         gl.glFlush();
         
-        
         /** Draw the surface of track at z=-1. */
         gl.glBegin(GL_TRIANGLE_STRIP);
         for (int i=0; i<=N; i++){
@@ -79,8 +82,10 @@ abstract class RaceTrack {
         }
         gl.glEnd();
         gl.glFlush();
-           
-        /** Draw the surface of the inner side of track. */
+    }
+    
+    public void drawBrick(GL2 gl, GLU glu, GLUT glut, int tmin, double dt, int N, int Ntracks, int Ncorners){
+                /** Draw the surface of the inner side of track. */
         gl.glBegin(GL_TRIANGLE_STRIP);
         for (int i=0; i<=N; i++){
             Vector P = getPoint(tmin+i*dt);
@@ -105,7 +110,6 @@ abstract class RaceTrack {
         }
         gl.glEnd();
         gl.glFlush();
-        
     }
     
     /**
