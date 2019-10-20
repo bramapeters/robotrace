@@ -37,7 +37,7 @@ class Camera {
      * Computes eye, center, and up, based on the camera's default mode.
      */
     private void setDefaultMode(GlobalState gs) {
-        Vector E = new Vector(0,0,0);
+        Vector E = new Vector(20,30,20);
         E=E.add(gs.cnt);
         
         float x = (float)Math.cos(gs.theta) * (float)Math.cos(gs.phi) * gs.vDist;
@@ -50,30 +50,6 @@ class Camera {
         
         eye = E;
         center = gs.cnt;
-        /*
-        
-        Vector E = new Vector(0,0,0);
-        E.z=gs.vDist*Math.cos(gs.phi);
-        double xyDist = gs.vDist*Math.sin(gs.phi);    //Magnitude of eye vector on XY-plane
-        E.x=xyDist*Math.cos(gs.theta);
-        E.y=xyDist*Math.sin(gs.theta);
-        
-        Vector U = new Vector(0,0,0);
-        if(E.z>0){
-            U.y=-E.y;
-            U.z=E.z;
-            U.x=-E.x;
-        } else {
-                       
-        }
-
-        System.out.println("U="+U);
-        System.out.println("E="+E);
-        
-        eye = E;
-        center = C;
-        up = U;  
-        */
     }
 
     /**
@@ -81,6 +57,10 @@ class Camera {
      * The camera should view from the perspective of the robot.
      */
     private void setFirstPersonMode(GlobalState gs, Robot focus) {
-
+        Vector Vx = new Vector(0,0,2);
+        Vector Vy = new Vector(focus.direction.x, focus.direction.y, focus.direction.z);
+        
+        eye = focus.position.add(Vx).add(Vy);
+        center = focus.position.add(focus.direction.scale(100)).add(Vx);
     }
 }

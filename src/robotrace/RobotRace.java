@@ -191,7 +191,7 @@ public class RobotRace extends Base {
                
         // Update the view according to the camera mode and robot of interest.
         // For camera modes 1 to 4, determine which robot to focus on.
-        camera.update(gs, robots[0]);
+        camera.update(gs, robots[2]);
         glu.gluLookAt(camera.eye.x(),    camera.eye.y(),    camera.eye.z(),
                       camera.center.x(), camera.center.y(), camera.center.z(),
                       camera.up.x(),     camera.up.y(),     camera.up.z());
@@ -232,7 +232,7 @@ public class RobotRace extends Base {
         // Draw the robots.
         gl.glUseProgram(robotShader.getProgramID());
         double angle_slider_a = gs.sliderA;
-        Double[] speed = {0.02, 0.03, 0.05, 0.07};
+        Double[] speed = {0.04, 0.02, 0.01, 0.07};
         for(int i = 0; i < 4; i++) {
             angle_slider_a =  0.5 - 12*speed[i]*Math.sin(gs.tAnim*10);
             robots[i].position = raceTracks[0].getLanePoint(i, speed[i] * (double)gs.tAnim);
