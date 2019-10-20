@@ -36,7 +36,7 @@ abstract class RaceTrack {
         /** Draw Ntracks+1 lines that separate each track. */
         for (int k=0; k<=Ntracks;k++){
             gl.glBegin(GL_LINE_LOOP);
-            gl.glColor3f(255, 0, 0);   
+            gl.glColor3f(0, 0, 0);   
             
             /** Draw a line between each track using N vertices. */
             for (int i=0; i<=N; i++){
@@ -52,13 +52,13 @@ abstract class RaceTrack {
         
         /** Draw surface of the track at z=1*/
         gl.glBegin(GL_TRIANGLE_STRIP);
-        gl.glColor3f(255, 0, 0);  
+        gl.glColor3f(255, 0, 0);   
         for (int i=0; i<=N; i++){
             Vector P = getPoint(tmin+i*dt);
             Vector Normal = new Vector(0,0,1);
             Vector Tangent = getTangent(tmin+i*dt);
             Vector Bitangent = Normal.cross(Tangent);
-            gl.glVertex3d(P.x+1*laneWidth*Bitangent.x,P.y+1*laneWidth*Bitangent.y,1);                
+            gl.glVertex3d(P.x+3*laneWidth*Bitangent.x,P.y+3*laneWidth*Bitangent.y,1);                
             gl.glVertex3d(P.x-3*laneWidth*Bitangent.x,P.y-3*laneWidth*Bitangent.y,1);                
         }
         gl.glEnd();
@@ -72,7 +72,7 @@ abstract class RaceTrack {
             Vector Normal = new Vector(0,0,1);
             Vector Tangent = getTangent(tmin+i*dt);
             Vector Bitangent = Normal.cross(Tangent);
-            gl.glVertex3d(P.x+1*laneWidth*Bitangent.x,P.y+1*laneWidth*Bitangent.y,-1);                
+            gl.glVertex3d(P.x+3*laneWidth*Bitangent.x,P.y+3*laneWidth*Bitangent.y,-1);                
             gl.glVertex3d(P.x-3*laneWidth*Bitangent.x,P.y-3*laneWidth*Bitangent.y,-1);  
         }
         gl.glEnd();
@@ -85,8 +85,8 @@ abstract class RaceTrack {
             Vector Normal = new Vector(0,0,1);
             Vector Tangent = getTangent(tmin+i*dt);
             Vector Bitangent = Normal.cross(Tangent);
-            gl.glVertex3d(P.x+1*laneWidth*Bitangent.x,P.y+1*laneWidth*Bitangent.y,1);                
-            gl.glVertex3d(P.x+1*laneWidth*Bitangent.x,P.y+1*laneWidth*Bitangent.y,-1); 
+            gl.glVertex3d(P.x+3*laneWidth*Bitangent.x,P.y+3*laneWidth*Bitangent.y,1);                
+            gl.glVertex3d(P.x+3*laneWidth*Bitangent.x,P.y+3*laneWidth*Bitangent.y,-1); 
         }
         gl.glEnd();
         gl.glFlush();
