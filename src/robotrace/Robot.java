@@ -47,8 +47,6 @@ class Robot {
      * Draws this robot (as a {@code stickfigure} if specified).
      */
     public void draw(GL2 gl, GLU glu, GLUT glut, float tAnim, double angle_slider) {
-        
-
         gl.glMaterialfv(GL_FRONT, GL_DIFFUSE, material.diffuse, 0);
         gl.glMaterialfv(GL_FRONT, GL_SPECULAR, material.specular, 0);
         gl.glMaterialf(GL_FRONT, GL_SHININESS, material.shininess);

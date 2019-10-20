@@ -240,6 +240,7 @@ public class RobotRace extends Base {
             angle_slider_a =  0.5 - 0.8*Math.sin(gs.tAnim*speed[i]*90);
             robots[i].position = raceTracks[0].getLanePoint(i, speed[i] * (double)gs.tAnim);
             robots[i].direction = raceTracks[0].getLaneTangent(i, speed[i] * (double)gs.tAnim).normalized();
+            robots[i].setAngle(180*Math.atan2(robots[i].direction.y, robots[i].direction.x)/Math.PI);
             gl.glPushMatrix();
                 robots[i].draw(gl, glu, glut, 0, angle_slider_a);
             gl.glPopMatrix();
