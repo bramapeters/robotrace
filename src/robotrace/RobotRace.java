@@ -216,21 +216,20 @@ public class RobotRace extends Base {
         }
         
         // Draw the robots.
+        
         gl.glUseProgram(robotShader.getProgramID()); 
         double angle_slider_a = gs.sliderA;
-        Double[] speed = {0.01, 0.03, 0.05, 0.07};
         
-        for(int i = 0; i < 4; i++) {
-            double angle_race = Math.sin(gs.tAnim * ((i + 1)*2)) * 45;
-            robots[i].setAngle(angle_race);
-            robots[i].position = raceTracks[0].getLanePoint(i, speed[i] * (double)gs.tAnim);
-            robots[i].direction = raceTracks[0].getLaneTangent(i, speed[i] * (double)gs.tAnim).normalized();
-            gl.glPushMatrix();
-                //gl.glTranslated(robots[i].position.x, robots[i].position.y, robots[i].position.z);
-                //gl.glRotated(90 + 180*Math.atan2(robots[i].direction.y, robots[i].direction.x)/Math.PI, 0, 0, 1);
-                robots[i].draw(gl, glu, glut, 0, angle_slider_a);
-            gl.glPopMatrix();
-        }
+        gl.glPushMatrix();
+            robots[0].draw(gl, glu, glut, 0, angle_slider_a);
+            /*gl.glTranslated(2, 0, 0);
+            robots[1].draw(gl, glu, glut, 0, angle_slider_a);
+            gl.glTranslated(2, 0, 0);
+            robots[2].draw(gl, glu, glut, 0, angle_slider_a);
+            gl.glTranslated(2, 0, 0);
+            robots[3].draw(gl, glu, glut, 0, angle_slider_a);
+            gl.glTranslated(2, 0, 0);*/
+        gl.glPopMatrix();
 
         // Draw the race track.
         gl.glUseProgram(trackShader.getProgramID());
