@@ -36,7 +36,7 @@ abstract class RaceTrack {
         /** Draw Ntracks+1 lines that separate each track. */
         for (int k=0; k<=Ntracks;k++){
             gl.glBegin(GL_LINE_LOOP);
-            gl.glColor3f(0, 0, 0);   
+            gl.glColor3f(255, 0, 0);   
             
             /** Draw a line between each track using N vertices. */
             for (int i=0; i<=N; i++){
