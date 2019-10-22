@@ -28,11 +28,12 @@ abstract class RaceTrack {
     /**
      * Draws this track, based on the control points.
      */
-    public void draw(GL2 gl, GLU glu, GLUT glut, GlobalState gs) {
-
-
+    public void draw(GL2 gl, GLU glu, GLUT glut, GlobalState gs, double trackNr) {
         // If gs.trackNr = 0, the parametrics track is drawn.
-        if(gs.trackNr==0){
+        if(trackNr==0){
+            
+            System.out.println("trackNr="+gs.trackNr);
+
             int N=40, Ntracks=4, Ncorners=2;    
             int tmin=0;        
             double dt = Math.pow(N, -1);
@@ -56,7 +57,7 @@ abstract class RaceTrack {
             }
             
         // If gs.trackNr = 1, the Bezier track is drawn.
-        } else if (gs.trackNr==1){
+        } else if (trackNr==1){
             System.out.println("trackNr="+gs.trackNr);
             // NOTE: THIS IS NOT THE BEZIER TRACK!
             // It's just for testing to see if the track is actually being switched.
@@ -171,8 +172,8 @@ abstract class RaceTrack {
         return Tangent;
 
     }
-    
-        public Vector getCubicBezierPnt(double t, Vector P0, Vector P1, Vector P2, Vector P3){
+   
+    public Vector getCubicBezierPnt(double t, Vector P0, Vector P1, Vector P2, Vector P3){
         
         double Px=Math.pow((1-t),3)*P0.x+3*t*Math.pow((1-t),2)*P1.x+3*Math.pow(t,2)*(1-t)*P2.x+Math.pow(t,3)*P3.x;
         double Py=Math.pow((1-t),3)*P0.y+3*t*Math.pow((1-t),2)*P1.y+3*Math.pow(t,2)*(1-t)*P2.y+Math.pow(t,3)*P3.y;
