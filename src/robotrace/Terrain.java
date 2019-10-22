@@ -39,5 +39,14 @@ class Terrain {
                 gl.glEnd();
             }
         }
+        ShaderPrograms.defaultShader.useProgram(gl);
+        gl.glTranslated(20, 20, 0);
+        gl.glBegin(GL_POLYGON);
+            gl.glColor4d(0.5, 0.5, 0.5, 0.5);
+            gl.glNormal3f(0,0,1);gl.glVertex2d(-20, -20);
+            gl.glNormal3f(0,0,1);gl.glVertex2d(-20, 20);
+            gl.glNormal3f(0,0,1);gl.glVertex2d(20, 20);
+            gl.glNormal3f(0,0,1);gl.glVertex2d(20, -20);
+        gl.glEnd( );
     }
 }

@@ -1,5 +1,4 @@
 // simple vertex shader
-#version 120
 varying vec4 Position;
 
 float z (float x, float y){
