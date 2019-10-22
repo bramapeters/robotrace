@@ -13,7 +13,7 @@ public class Textures {
     
     public static Texture head = null;
     public static Texture torso = null;
-    public static Texture track = null;
+    public static Texture track;
     public static Texture brick = null;
         
     public static void loadTextures() {

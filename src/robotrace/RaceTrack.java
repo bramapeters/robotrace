@@ -28,30 +28,60 @@ abstract class RaceTrack {
     /**
      * Draws this track, based on the control points.
      */
-    public void draw(GL2 gl, GLU glu, GLUT glut) {
-        int N=40, Ntracks=4, Ncorners=2;    // N defines the number of Vertices each oval-shaped line are created.
-                                            // Ntracks defines the number of tracks. This can stay at Ntracks = 4.
-                                            // Ncorners is used to draw the corners of the track at z=-1. This can stay at Ncorners = 2.
-        int tmin=0;        
-        double dt = Math.pow(N, -1);
-        
-        drawTrack(gl, glu, glut, tmin, dt, N, Ntracks, Ncorners);
-        drawBrick(gl, glu,glut, tmin, dt, N, Ntracks, Ncorners);
-        /** Draw Ntracks+1 lines that separate each track. */
-        for (int k=0; k<=Ntracks;k++){
-            gl.glBegin(GL_LINE_LOOP);
-            gl.glColor3f(0, 0, 0);   
-            
-            /** Draw a line between each track using N vertices. */
-            for (int i=0; i<=N; i++){
-                Vector P = getPoint(tmin+i*dt);
-                Vector Normal = new Vector(0,0,1);
-                Vector Tangent = getTangent(tmin+i*dt);
-                Vector Bitangent = Normal.cross(Tangent);
-                gl.glVertex3d(P.x+(k-3)*laneWidth*Bitangent.x,P.y+(k-3)*laneWidth*Bitangent.y,P.z+(k-3)*laneWidth*Bitangent.z);     
+    public void draw(GL2 gl, GLU glu, GLUT glut, GlobalState gs) {
+
+
+        // If gs.trackNr = 0, the parametrics track is drawn.
+        if(gs.trackNr==0){
+            int N=40, Ntracks=4, Ncorners=2;    
+            int tmin=0;        
+            double dt = Math.pow(N, -1);
+
+            drawTrack(gl, glu, glut, tmin, dt, N, Ntracks, Ncorners);
+            drawBrick(gl, glu,glut, tmin, dt, N, Ntracks, Ncorners);
+            /** Draw Ntracks+1 lines that separate each track. */
+            for (int k=0; k<=Ntracks;k++){
+                gl.glBegin(GL_LINE_LOOP);
+                gl.glColor3f(0, 0, 0);   
+
+                /** Draw a line between each track using N vertices. */
+                for (int i=0; i<=N; i++){
+                    Vector P = getPoint(tmin+i*dt);
+                    Vector Normal = new Vector(0,0,1);
+                    Vector Tangent = getTangent(tmin+i*dt);
+                    Vector Bitangent = Normal.cross(Tangent);
+                    gl.glVertex3d(P.x+(k-3)*laneWidth*Bitangent.x,P.y+(k-3)*laneWidth*Bitangent.y,P.z+(k-3)*laneWidth*Bitangent.z);     
+                }
+                gl.glEnd();
             }
-            gl.glEnd();
-            gl.glFlush();
+            
+        // If gs.trackNr = 1, the Bezier track is drawn.
+        } else if (gs.trackNr==1){
+            System.out.println("trackNr="+gs.trackNr);
+            // NOTE: THIS IS NOT THE BEZIER TRACK!
+            // It's just for testing to see if the track is actually being switched.
+            // If it is being switched, only track-lines show up.
+            int N=20;
+            int Ntracks=1;
+            int tmin=0;        
+            double dt = Math.pow(N, -1);
+
+            /** Draw Ntracks+1 lines that separate each track. */
+            for (int k=0; k<=Ntracks;k++){
+                gl.glBegin(GL_LINE_LOOP);
+                gl.glColor3f(0, 0, 0);   
+
+                /** Draw a line between each track using N vertices. */
+                for (int i=0; i<=N; i++){
+                    Vector P = getPoint(tmin+i*dt);
+                    Vector Normal = new Vector(0,0,1);
+                    Vector Tangent = getTangent(tmin+i*dt);
+                    Vector Bitangent = Normal.cross(Tangent);
+                    gl.glVertex3d(P.x+(k-3)*laneWidth*Bitangent.x,P.y+(k-3)*laneWidth*Bitangent.y,P.z+(k-3)*laneWidth*Bitangent.z);     
+                }
+                gl.glEnd();
+                gl.glFlush();
+            }
         }
     }
     
@@ -124,7 +154,7 @@ abstract class RaceTrack {
         
 
         Vector P = new Vector(Pcenter.x+(lane-2.5)*laneWidth*Bitangent.x,Pcenter.y+(lane-2.5)*laneWidth*Bitangent.y,1);                
-        System.out.println("P="+P);
+        //System.out.println("P="+P);
         return P;
 
     }
@@ -136,10 +166,33 @@ abstract class RaceTrack {
     public Vector getLaneTangent(int lane, double t){
 
         Vector Tangent = getTangent(t);
-        System.out.println("Tangent="+t);   //lane needs to be included in the function probably.
+        //System.out.println("Tangent="+t);   //lane needs to be included in the function probably.
     
         return Tangent;
 
+    }
+    
+        public Vector getCubicBezierPnt(double t, Vector P0, Vector P1, Vector P2, Vector P3){
+        
+        double Px=Math.pow((1-t),3)*P0.x+3*t*Math.pow((1-t),2)*P1.x+3*Math.pow(t,2)*(1-t)*P2.x+Math.pow(t,3)*P3.x;
+        double Py=Math.pow((1-t),3)*P0.y+3*t*Math.pow((1-t),2)*P1.y+3*Math.pow(t,2)*(1-t)*P2.y+Math.pow(t,3)*P3.y;
+        double Pz=Math.pow((1-t),3)*P0.z+3*t*Math.pow((1-t),2)*P1.z+3*Math.pow(t,2)*(1-t)*P2.z+Math.pow(t,3)*P3.z;
+        
+        Vector P = new Vector(Px,Py,Pz);
+        System.out.println("P="+P);
+        return P;
+    }
+    
+    public Vector getCubicBezierTng(double t, Vector P0, Vector P1, Vector P2, Vector P3){
+        // Calculates the tangent vector at the end of the Bezier curve.
+        // So at P3.
+        double Tangentx = 3*(P3.x-P2.x);
+        double Tangenty = 3*(P3.y-P2.y);
+        double Tangentz = 3*(P3.z-P2.z);
+        
+        Vector Tangent = new Vector(Tangentx,Tangenty,Tangentz);
+        
+        return Tangent;
     }
     
     
