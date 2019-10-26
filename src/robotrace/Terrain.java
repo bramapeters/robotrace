@@ -22,7 +22,7 @@ class Terrain {
      * Draws the terrain.
      */
     public void draw(GL2 gl, GLU glu, GLUT glut) {
-        ShaderPrograms.terrainShader.useProgram(gl);
+        /*ShaderPrograms.terrainShader.useProgram(gl);
         double u, v;
         double nu = 10, nv = 10;
         double du = 1/nu, dv = 1/nv;
@@ -47,6 +47,6 @@ class Terrain {
             gl.glNormal3f(0,0,1);gl.glVertex2d(-20, 20);
             gl.glNormal3f(0,0,1);gl.glVertex2d(20, 20);
             gl.glNormal3f(0,0,1);gl.glVertex2d(20, -20);
-        gl.glEnd( );
+        gl.glEnd( );*/
     }
 }
