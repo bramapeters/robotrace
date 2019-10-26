@@ -35,6 +35,9 @@ abstract class RaceTrack {
 =======
         if(trackNr==0){
             
+<<<<<<< HEAD
+>>>>>>> parent of 4c14e1b... track texture added including shading
+=======
 >>>>>>> parent of 4c14e1b... track texture added including shading
             System.out.println("trackNr="+gs.trackNr);
 
@@ -101,6 +104,9 @@ abstract class RaceTrack {
                     Vector Tangent = getTangent(tmin+i*dt);
                     Vector Bitangent = Normal.cross(Tangent);
                     gl.glVertex3d(P.x+(k-3)*laneWidth*Bitangent.x,P.y+(k-3)*laneWidth*Bitangent.y,P.z+(k-3)*laneWidth*Bitangent.z);     
+<<<<<<< HEAD
+>>>>>>> parent of 4c14e1b... track texture added including shading
+=======
 >>>>>>> parent of 4c14e1b... track texture added including shading
                 }
                 /** 1th order of Continuity: P3-P2=Q1-Q0. */
@@ -139,6 +145,7 @@ abstract class RaceTrack {
     }
     
     public void drawTrack(GL2 gl, GLU glu, GLUT glut, int tmin, double dt, int N, int Ntracks, int Ncorners){
+<<<<<<< HEAD
 <<<<<<< HEAD
         ShaderPrograms.trackShader.useProgram(gl);
         Textures.track.bind(gl);
@@ -212,6 +219,8 @@ abstract class RaceTrack {
  
 =======
         /** Draw surface of the track at z=1*/
+=======
+        /** Draw surface of the track at z=1*/
         gl.glBegin(GL_TRIANGLE_STRIP);
         gl.glColor3f(255, 0, 0);   
         for (int i=0; i<=N; i++){
@@ -241,6 +250,37 @@ abstract class RaceTrack {
     
     public void drawBrick(GL2 gl, GLU glu, GLUT glut, int tmin, double dt, int N, int Ntracks, int Ncorners){
                 /** Draw the surface of the inner side of track. */
+>>>>>>> parent of 4c14e1b... track texture added including shading
+        gl.glBegin(GL_TRIANGLE_STRIP);
+        gl.glColor3f(255, 0, 0);   
+        for (int i=0; i<=N; i++){
+            Vector P = getPoint(tmin+i*dt);
+            Vector Normal = new Vector(0,0,1);
+            Vector Tangent = getTangent(tmin+i*dt);
+            Vector Bitangent = Normal.cross(Tangent);
+            gl.glVertex3d(P.x+1*laneWidth*Bitangent.x,P.y+1*laneWidth*Bitangent.y,1);                
+<<<<<<< HEAD
+            gl.glVertex3d(P.x-3*laneWidth*Bitangent.x,P.y-3*laneWidth*Bitangent.y,1);                
+        }
+        gl.glEnd();
+        gl.glFlush();
+        
+        /** Draw the surface of track at z=-1. */
+        gl.glBegin(GL_TRIANGLE_STRIP);
+        for (int i=0; i<=N; i++){
+            Vector P = getPoint(tmin+i*dt);
+            Vector Normal = new Vector(0,0,1);
+            Vector Tangent = getTangent(tmin+i*dt);
+            Vector Bitangent = Normal.cross(Tangent);
+            gl.glVertex3d(P.x+1*laneWidth*Bitangent.x,P.y+1*laneWidth*Bitangent.y,-1);                
+            gl.glVertex3d(P.x-3*laneWidth*Bitangent.x,P.y-3*laneWidth*Bitangent.y,-1);  
+        }
+        gl.glEnd();
+        gl.glFlush();
+    }
+    
+    public void drawBrick(GL2 gl, GLU glu, GLUT glut, int tmin, double dt, int N, int Ntracks, int Ncorners){
+                /** Draw the surface of the inner side of track. */
         gl.glBegin(GL_TRIANGLE_STRIP);
         for (int i=0; i<=N; i++){
             Vector P = getPoint(tmin+i*dt);
@@ -248,6 +288,8 @@ abstract class RaceTrack {
             Vector Tangent = getTangent(tmin+i*dt);
             Vector Bitangent = Normal.cross(Tangent);
             gl.glVertex3d(P.x+1*laneWidth*Bitangent.x,P.y+1*laneWidth*Bitangent.y,1);                
+=======
+>>>>>>> parent of 4c14e1b... track texture added including shading
             gl.glVertex3d(P.x+1*laneWidth*Bitangent.x,P.y+1*laneWidth*Bitangent.y,-1); 
         }
         gl.glEnd();
@@ -265,6 +307,9 @@ abstract class RaceTrack {
         }
         gl.glEnd();
         gl.glFlush();
+<<<<<<< HEAD
+>>>>>>> parent of 4c14e1b... track texture added including shading
+=======
 >>>>>>> parent of 4c14e1b... track texture added including shading
     }
     
