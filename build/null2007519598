@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.10.4
+Created-By: 13.0.1+9 (Oracle Corporation)
+Codebase: C:\Users\brama\Dropbox\Education\Technische Universiteit, Ei
+ ndhoven\Psychology & Technology (BACHELOR)\Year 5\Quartile 1\2IV60\As
+ signments\RobotRace\RobotRace\robotrace\dist
+Application-Library-Allowable-Codebase: C:\Users\brama\Dropbox\Educati
+ on\Technische Universiteit, Eindhoven\Psychology & Technology (BACHEL
+ OR)\Year 5\Quartile 1\2IV60\Assignments\RobotRace\RobotRace\robotrace
+ \dist
+Caller-Allowable-Codebase: C:\Users\brama\Dropbox\Education\Technische
+  Universiteit, Eindhoven\Psychology & Technology (BACHELOR)\Year 5\Qu
+ artile 1\2IV60\Assignments\RobotRace\RobotRace\robotrace\dist
+Permissions: all-permissions
+Application-Name: RobotRace
+
